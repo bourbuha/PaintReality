@@ -486,14 +486,17 @@ namespace PaintReality
             if(g==null) g = panel1.CreateGraphics();
             openFileDialog1.AddExtension = true;
             var res = openFileDialog1.ShowDialog();
-            gimp.Clear(Color.White);
-            Image img2 = Image.FromFile(this.openFileDialog1.FileName.ToString());
-            img = new Bitmap(img2, img.Size);
-            gimp.Clear(Color.White);
-            gimp.Clear(color1);
-            g.DrawImage(img, 0, 0);
-            gimp.DrawImage(img2, 0, 0);
-            g.DrawImage(img, 0, 0);
+            if (res == DialogResult.OK)
+            {
+                gimp.Clear(Color.White);
+                Image img2 = Image.FromFile(this.openFileDialog1.FileName.ToString());
+                img = new Bitmap(img2, img.Size);
+                gimp.Clear(Color.White);
+                gimp.Clear(color1);
+                g.DrawImage(img, 0, 0);
+                gimp.DrawImage(img2, 0, 0);
+                g.DrawImage(img, 0, 0);
+            }
         }
 
         private void openAndStretchToolStripMenuItem_Click(object sender, EventArgs e)
@@ -501,10 +504,13 @@ namespace PaintReality
             if (g == null) g = panel1.CreateGraphics();
             openFileDialog1.AddExtension = true;
             var res = openFileDialog1.ShowDialog();
-            gimp.Clear(Color.White);
-            Image img2 = Image.FromFile(openFileDialog1.FileName.ToString());
-            gimp.DrawImage(img2, 0, 0);
-            g.DrawImage(img, 0, 0);
+            if (res == DialogResult.OK)
+            {
+                gimp.Clear(Color.White);
+                Image img2 = Image.FromFile(openFileDialog1.FileName.ToString());
+                gimp.DrawImage(img2, 0, 0);
+                g.DrawImage(img, 0, 0);
+            }
         }
 
         private void numericUpDown1_ValueChanged_1(object sender, EventArgs e)
